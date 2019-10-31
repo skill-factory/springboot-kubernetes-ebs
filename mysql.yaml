@@ -24,6 +24,7 @@ spec:
       containers:
         - name: mysql-server
           image: mysql:5.7
+          #command: ["rm", "-r", "/var/lib/mysql/lost+found"]
           env:
             - name: MYSQL_DATABASE
               value: employee_db

@@ -26,6 +26,7 @@ spec:
           image: mysql:5.7
           args:
             - "--ignore-db-dir=lost+found"
+          #command: ["rm", "-r", "/var/lib/mysql/lost+found"]
           env:
             - name: MYSQL_DATABASE
               value: employee_db
@@ -47,7 +48,8 @@ spec:
       volumes:
         - name: mysql-data-volume
           awsElasticBlockStore:
-            volumeID: vol-0714b9ff4bf5d4e49
+            volumeID: vol-0e6ad63d9314d4da5
+            fsType: ext4
           # persistentVolumeClaim:
           #   claimName: mysql-data-claim
 # ---

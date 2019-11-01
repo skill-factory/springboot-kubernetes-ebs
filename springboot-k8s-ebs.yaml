@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-k8s-ebs
+  labels:
+    app: springboot-k8s-ebs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springboot-k8s-ebs
+  template:
+    metadata:
+      labels:
+        app: springboot-k8s-ebs
+    spec:
+      containers:
+        - name: springboot-k8s-ebs
+          image: kalyancherukuru/springboot-k8s-ebs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-k8s-ebs-service
+spec:
+  selector:
+    app: springboot-k8s-ebs
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
